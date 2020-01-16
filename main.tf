@@ -262,7 +262,7 @@ resource "kubernetes_deployment" "this" {
 
     labels = {
       "app.kubernetes.io/name"       = "aws-alb-ingress-controller"
-      "app.kubernetes.io/version"    = local.aws_alb_ingress_controller_version
+      "app.kubernetes.io/version"    = var.aws_alb_ingress_controller_version
       "app.kubernetes.io/managed-by" = "terraform"
     }
 
@@ -284,7 +284,7 @@ resource "kubernetes_deployment" "this" {
       metadata {
         labels = {
           "app.kubernetes.io/name"    = "aws-alb-ingress-controller"
-          "app.kubernetes.io/version" = local.aws_alb_ingress_controller_version
+          "app.kubernetes.io/version" = var.aws_alb_ingress_controller_version
         }
 
         annotations = {
