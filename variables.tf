@@ -38,3 +38,8 @@ variable "aws_alb_ingress_controller_version" {
   type        = string
   default     = "1.1.2"
 }
+
+variable "k8s_cluster_node_role" {
+  description = "Attach Ingress Controller IAM Policy to the Cluster Node Role"
+  type = string
+}

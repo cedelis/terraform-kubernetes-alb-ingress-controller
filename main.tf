@@ -154,6 +154,11 @@ resource "aws_iam_role_policy_attachment" "this" {
   role       = aws_iam_role.this.name
 }
 
+resource "aws_iam_role_policy_attachment" "cluster_node_role" {
+  policy_arn = aws_iam_policy.this.arn
+  role       = var.k8s_cluster_node_role
+}
+
 resource "kubernetes_service_account" "this" {
   automount_service_account_token = true
   metadata {
