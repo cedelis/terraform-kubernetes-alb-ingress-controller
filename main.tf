@@ -162,11 +162,11 @@ resource "aws_iam_role_policy_attachment" "cluster_node_role" {
 resource "kubernetes_service_account" "this" {
   automount_service_account_token = true
   metadata {
-    name      = "aws-alb-ingress-controller"
+    name      = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
     namespace = var.k8s_namespace
 
     labels = {
-      "app.kubernetes.io/name"       = "aws-alb-ingress-controller"
+      "app.kubernetes.io/name"       = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
       "app.kubernetes.io/managed-by" = "terraform"
     }
   }
@@ -174,10 +174,10 @@ resource "kubernetes_service_account" "this" {
 
 resource "kubernetes_cluster_role" "this" {
   metadata {
-    name = "aws-alb-ingress-controller"
+    name = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
 
     labels = {
-      "app.kubernetes.io/name"       = "aws-alb-ingress-controller"
+      "app.kubernetes.io/name"       = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
       "app.kubernetes.io/managed-by" = "terraform"
     }
   }
@@ -231,10 +231,10 @@ resource "kubernetes_cluster_role" "this" {
 
 resource "kubernetes_cluster_role_binding" "this" {
   metadata {
-    name = "aws-alb-ingress-controller"
+    name = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
 
     labels = {
-      "app.kubernetes.io/name"       = "aws-alb-ingress-controller"
+      "app.kubernetes.io/name"       = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
       "app.kubernetes.io/managed-by" = "terraform"
     }
   }
@@ -257,11 +257,11 @@ resource "kubernetes_deployment" "this" {
   depends_on = [kubernetes_cluster_role_binding.this]
 
   metadata {
-    name      = "aws-alb-ingress-controller"
+    name      = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
     namespace = var.k8s_namespace
 
     labels = {
-      "app.kubernetes.io/name"       = "aws-alb-ingress-controller"
+      "app.kubernetes.io/name"       = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
       "app.kubernetes.io/version"    = var.aws_alb_ingress_controller_version
       "app.kubernetes.io/managed-by" = "terraform"
     }
