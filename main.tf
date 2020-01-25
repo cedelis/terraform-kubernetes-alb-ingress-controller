@@ -276,14 +276,14 @@ resource "kubernetes_deployment" "this" {
 
     selector {
       match_labels = {
-        "app.kubernetes.io/name" = "aws-alb-ingress-controller"
+        "app.kubernetes.io/name" = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
       }
     }
 
     template {
       metadata {
         labels = {
-          "app.kubernetes.io/name"    = "aws-alb-ingress-controller"
+          "app.kubernetes.io/name"    = "${var.k8s_cluster_name}-aws-alb-ingress-controller"
           "app.kubernetes.io/version" = var.aws_alb_ingress_controller_version
         }
 
